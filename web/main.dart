@@ -37,8 +37,9 @@ void main() {
         show(resultImg);
       }
     } on RollApiRateLimitException catch (e) {
-      var txt = "Rate limit exceeded! " +
+      var txt = "You're rolling too often! " +
           (e.limitReset != null
+              // Looks like getting headers doesn't work in browser
               ? "Wait ~${DateTime.now().difference(e.limitReset!).inSeconds} "
                   "seconds ⏳ and try again 🤷"
               : "Try again later...");
