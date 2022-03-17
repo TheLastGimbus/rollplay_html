@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:rollapi/rollapi.dart' as roll;
+import 'package:rollapi/rollapi.dart';
 
 void hide(Element e) => e.classes.add('hidden');
 
@@ -13,6 +13,8 @@ void main() {
   final resultImg = querySelector('#result-image')! as ImageElement;
   final btnRoll = querySelector('#btn-roll')! as ButtonElement;
 
+  final client = RollApiClient(minPingFrequency: Duration(milliseconds: 1000));
+
   show(btnRoll);
   btnRoll.onClick.listen((_) async {
     hide(rollUuidText);
@@ -21,22 +23,31 @@ void main() {
 
     resultText.text = "Rolling...";
     show(resultText);
-    final req = await roll.makeRequest();
-
-    rollUuidText.text = req.uuid;
-    show(rollUuidText);
-
-    final res = await req.stateStream.last;
-    if (res.key != roll.RequestState.finished) {
-      resultText.text = "Error: ${res.value}";
-      return;
+    try {
+      final stateStream = await client.roll();
+      final res = await stateStream.last;
+      rollUuidText.text = res.uuid;
+      show(rollUuidText);
+      if (res.isError) {
+        resultText.text = res.toString();
+        return;
+      } else if (res is RollStateFinished) {
+        resultText.text = res.number.toString();
+        resultImg.src = client.getImageUrl(res.uuid).toString();
+        show(resultImg);
+      }
+    } on RollApiRateLimitException catch (e) {
+      var txt = "Rate limit exceeded! " +
+          (e.limitReset != null
+              ? "Wait ~${DateTime.now().difference(e.limitReset!).inSeconds} "
+                  "seconds ⏳ and try again 🤷"
+              : "Try again later...");
+      resultText.text = txt;
+    } catch (e) {
+      resultText.text = "Error: $e";
+    } finally {
+      btnRoll.disabled = false;
     }
-    final number = res.value as int;
-    resultText.text = number.toString();
-    resultImg.src = roll.API_BASE_URL + 'image/' + req.uuid;
-    show(resultImg);
-
-    btnRoll.disabled = false;
   });
   querySelector('#output')?.text = 'Your Dart app is running.';
 }

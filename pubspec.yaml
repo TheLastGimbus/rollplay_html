@@ -8,8 +8,10 @@ environment:
 
 
 dependencies:
-  rollapi: 1.2.1
-#   path: ^1.7.0
+  rollapi:
+    git:
+      url: https://github.com/TheLastGimbus/rollapi_dart/
+      ref: dev
 
 dev_dependencies:
   build_runner: ^2.1.4
