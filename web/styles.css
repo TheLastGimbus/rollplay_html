@@ -22,6 +22,7 @@ header {
 
 main {
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Button style */
@@ -35,6 +36,11 @@ button.ripple {
   background: linear-gradient(45deg, #7a4da2, #575faa);
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   outline: none;
+}
+
+button.ripple:disabled {
+  background: #888;
+  cursor: default;
 }
 
 /* Ripple effect */
@@ -61,11 +67,19 @@ button.ripple {
 #main-text {
   font-size: 120%;
 }
+#result-text {
+  font-size: 180%;
+  margin-top: 16px;
+}
+#result-image {
+  width: 500px;
+  max-width: 100%;
+}
 #btn-roll {
   font-size: 150%;
   position: absolute;
   /*  center bottom */
-  bottom: 64px;
+  bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
 }

@@ -197,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -309,6 +316,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  rollapi:
+    dependency: "direct main"
+    description:
+      name: rollapi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
   scratch_space:
     dependency: transitive
     description:
