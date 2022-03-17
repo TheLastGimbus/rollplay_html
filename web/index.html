@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=2,minimum-scale=.5">
     <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk">
     <title>Roll-Play</title>
     <link rel="stylesheet" href="styles.css">
@@ -12,11 +12,14 @@
 </head>
 
 <body>
-
-  <h1>Roll-Play</h1>
-  <div id="output"></div>
-
-  <button id="btn-roll" class="ripple">Roll the dice!</button>
+<header>
+  <h1 style="display: inline-block">Roll-Play</h1>
+</header>
+<main>
+    <span id="main-text">Press the button below 👇 to roll the dice 🎲</span>
+    <button id="btn-roll" class="ripple">Roll the dice!</button>
+    <span id="result-text" class="hidden">Your result will be here... and you shouldn't see this :/</span>
+</main>
 
 </body>
 </html>
