@@ -22,11 +22,12 @@ jobs:
       with:
         path: /opt/hostedtoolcache/flutter
         key: ${{ runner.OS }}-flutter-install-cache-${{ env.FLUTTER_VERSION }}-${{ env.FLUTTER_CHANNEL }}
-    - uses: subosito/flutter-action@v1.5.3
+    - uses: subosito/flutter-action@v2
       with:
         flutter-version: ${{ env.FLUTTER_VERSION }}
         channel: ${{ env.FLUTTER_CHANNEL }}
     - run: dart pub global activate webdev
+    - run: dart pub get
     - run: webdev build -o output/
 
     # Change folder name for it to route correclty
