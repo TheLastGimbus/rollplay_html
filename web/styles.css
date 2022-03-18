@@ -83,6 +83,9 @@ button.ripple:disabled {
   left: 50%;
   transform: translateX(-50%);
 }
+#btn-roll:focus {
+  border: #fff solid 1px;
+}
 
 /* Dark mode stuff */
 @media (prefers-color-scheme: light) {
