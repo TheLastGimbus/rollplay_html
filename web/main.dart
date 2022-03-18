@@ -24,23 +24,23 @@ void main() {
     resultText.text = "Rolling...";
     show(resultText);
     try {
-      final stateStream = await client.roll();
-      final res = await stateStream.last;
-      rollUuidText.text = res.uuid;
+      final uuid = await client.roll();
+      final res = await client.watchRoll(uuid).last;
+      rollUuidText.text = uuid;
       show(rollUuidText);
       if (res.isError) {
         resultText.text = res.toString();
         return;
       } else if (res is RollStateFinished) {
         resultText.text = res.number.toString();
-        resultImg.src = client.getImageUrl(res.uuid).toString();
+        resultImg.src = client.getImageUrl(uuid).toString();
         show(resultImg);
       }
     } on RollApiRateLimitException catch (e) {
       var txt = "You're rolling too often! " +
           (e.limitReset != null
               // Looks like getting headers doesn't work in browser
-              ? "Wait ~${DateTime.now().difference(e.limitReset!).inSeconds} "
+              ? "Wait ~${e.limitReset!.difference(DateTime.now()).inSeconds} "
                   "seconds ⏳ and try again 🤷"
               : "Try again later...");
       resultText.text = txt;
