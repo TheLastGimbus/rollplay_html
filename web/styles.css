@@ -85,6 +85,14 @@ button.ripple:disabled {
   display: none;
 }
 
+form label {
+  display: inline;
+  margin-bottom: 8px;
+}
+form div {
+  margin-bottom: 10px;
+}
+
 /* ===== Individual items ===== */
 #main-text {
   font-size: 120%;
