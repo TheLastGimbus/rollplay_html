@@ -19,7 +19,8 @@ header {
 }
 header div {
   word-break: break-all;
-  flex:1
+  flex:1;
+  margin-block: auto;
 }
 header div#main-title {
   word-break: break-word;
