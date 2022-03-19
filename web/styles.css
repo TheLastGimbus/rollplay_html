@@ -40,7 +40,11 @@ footer {
   bottom: 0;
   width: 100%;
   opacity: 0.6;
-  padding: 8px;
+  /* This, for some reason, makes the whole thing overflow */
+  /*padding: 20px;*/
+}
+footer p {
+  margin: 10px;
 }
 
 /* Button style */
@@ -100,6 +104,7 @@ button.ripple:disabled {
   bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
 }
 #btn-roll:focus {
   border: #fff solid 1px;
