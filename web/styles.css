@@ -25,6 +25,14 @@ main {
   margin: 0 auto;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.6;
+  padding: 8px;
+}
+
 /* Button style */
 button.ripple {
   border: none;
