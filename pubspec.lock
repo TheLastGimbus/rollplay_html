@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.1"
+  any_base:
+    dependency: transitive
+    description:
+      name: any_base
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   archive:
     dependency: transitive
     description:
@@ -328,7 +335,7 @@ packages:
     description:
       path: "."
       ref: dev
-      resolved-ref: acffc2e2f3fbf4195503d9fa485c7dc644122885
+      resolved-ref: "13c63d29356b17a9acefb57c87d50519f2a023e9"
       url: "https://github.com/TheLastGimbus/rollapi_dart/"
     source: git
     version: "1.2.1"
