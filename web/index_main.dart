@@ -10,7 +10,6 @@ StreamSubscription<RollState>? _watchSub;
 
 void main() {
   final mainText = querySelector('#main-text')!;
-  final rollUuidText = querySelector('#roll-uuid')!;
   final resultText = querySelector('#result-text')!;
   final resultImg = querySelector('#result-image')! as ImageElement;
   final rollNotes = querySelector('#roll-notes')!;
@@ -24,8 +23,6 @@ void main() {
   );
 
   Future<void> watch(String uuid) async {
-    rollUuidText.innerText = uuid;
-    rollUuidText.show();
     await _watchSub?.cancel();
     print('Watching $uuid...');
     _watchSub = client.watchRoll(uuid).listen((event) {
@@ -61,7 +58,6 @@ void main() {
 
   btnRoll.show();
   btnRoll.onClick.listen((_) async {
-    rollUuidText.hide();
     resultImg.hide();
     btnRoll.disabled = true;
 
