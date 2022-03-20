@@ -1,6 +1,6 @@
 import 'dart:html';
 
-extension Utils on Element {
+extension ElementUtils on Element {
   void hide() => classes.add('hidden');
 
   void show() => classes.remove('hidden');
@@ -13,5 +13,13 @@ extension Utils on Element {
 
   void fadeOut() {
     restartClass('fade-out');
+  }
+}
+
+extension UriUtils on Uri {
+  Uri withReplacedParams(Map<String, dynamic> params) {
+    final query = Map<String, dynamic>.from(queryParameters);
+    query.addAll(params);
+    return replace(queryParameters: query);
   }
 }

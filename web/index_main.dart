@@ -17,6 +17,22 @@ void main() {
     password: document.cookie?.getCookie(cookieApiPwdKey),
   );
 
+  watch(String uuid) async {
+    rollUuidText.text = uuid;
+    rollUuidText.show();
+    final res = await client.watchRoll(uuid).last;
+    print('res: $res');
+    resultText.show();
+    if (res.isError) {
+      resultText.text = res.toString();
+      return;
+    } else if (res is RollStateFinished) {
+      resultText.text = res.number.toString();
+      resultImg.src = client.getImageUrl(uuid).toString();
+      resultImg.show();
+    }
+  }
+
   btnRoll.show();
   btnRoll.onClick.listen((_) async {
     rollUuidText.hide();
@@ -27,17 +43,13 @@ void main() {
     resultText.show();
     try {
       final uuid = await client.roll();
-      final res = await client.watchRoll(uuid).last;
-      rollUuidText.text = uuid;
-      rollUuidText.show();
-      if (res.isError) {
-        resultText.text = res.toString();
-        return;
-      } else if (res is RollStateFinished) {
-        resultText.text = res.number.toString();
-        resultImg.src = client.getImageUrl(uuid).toString();
-        resultImg.show();
-      }
+      window.history.pushState(
+        null,
+        'rollin',
+        Uri.parse(window.location.href)
+            .withReplacedParams({'uuid': uuid}).toString(),
+      );
+      await watch(uuid);
     } on RollApiRateLimitException catch (e) {
       var txt = "You're rolling too often! " +
           (e.limitReset != null
@@ -52,5 +64,13 @@ void main() {
       btnRoll.disabled = false;
     }
   });
+
+  // start watching if uuid is in url:
+  final uuid = Uri.parse(window.location.href).queryParameters['uuid'];
+  if (uuid != null) {
+    print('already have $uuid');
+    watch(uuid);
+  }
+
   querySelector('#output')?.text = 'Your Dart app is running.';
 }
