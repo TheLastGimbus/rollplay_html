@@ -93,6 +93,17 @@ form div {
   margin-bottom: 10px;
 }
 
+
+/* ===== Animations ===== */
+@keyframes fadeOut {
+  0% { opacity: 1;}
+  100% { opacity: 0;}
+}
+
+.fade-out {
+  animation: fadeOut 5s forwards;
+}
+
 /* ===== Individual items ===== */
 #main-text {
   font-size: 120%;

@@ -1,10 +1,13 @@
 import 'dart:html';
 
 import '../settings.dart';
+import '../utils.dart';
 
 void main() async {
   final form = querySelector('#form-settings')! as FormElement;
   final inputPwd = form.querySelector('#api-password')! as InputElement;
+  final subMsgSuccess = form.querySelector('#submission-message-success')!;
+  final subMsgFail = form.querySelector('#submission-message-fail')!;
 
   // Fill password from cookie
   inputPwd.value = document.cookie?.getCookie(cookieApiPwdKey) ?? '';
@@ -21,5 +24,14 @@ void main() async {
       maxAge: Duration(days: 365),
       secure: true,
     );
+
+    if (document.cookie?.getCookie(cookieApiPwdKey) == pass) {
+      subMsgSuccess.show();
+      subMsgSuccess.fadeOut();
+      subMsgFail.hide();
+    } else {
+      subMsgSuccess.hide();
+      subMsgFail.show();
+    }
   });
 }

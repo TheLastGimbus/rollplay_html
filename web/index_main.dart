@@ -3,10 +3,7 @@ import 'dart:html';
 import 'package:rollapi/rollapi.dart';
 
 import 'settings.dart';
-
-void hide(Element e) => e.classes.add('hidden');
-
-void show(Element e) => e.classes.remove('hidden');
+import 'utils.dart';
 
 void main() {
   final mainText = querySelector('#main-text')!;
@@ -20,26 +17,26 @@ void main() {
     password: document.cookie?.getCookie(cookieApiPwdKey),
   );
 
-  show(btnRoll);
+  btnRoll.show();
   btnRoll.onClick.listen((_) async {
-    hide(rollUuidText);
-    hide(resultImg);
+    rollUuidText.hide();
+    resultImg.hide();
     btnRoll.disabled = true;
 
     resultText.text = "Rolling...";
-    show(resultText);
+    resultText.show();
     try {
       final uuid = await client.roll();
       final res = await client.watchRoll(uuid).last;
       rollUuidText.text = uuid;
-      show(rollUuidText);
+      rollUuidText.show();
       if (res.isError) {
         resultText.text = res.toString();
         return;
       } else if (res is RollStateFinished) {
         resultText.text = res.number.toString();
         resultImg.src = client.getImageUrl(uuid).toString();
-        show(resultImg);
+        resultImg.show();
       }
     } on RollApiRateLimitException catch (e) {
       var txt = "You're rolling too often! " +
