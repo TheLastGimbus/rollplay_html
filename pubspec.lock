@@ -335,7 +335,7 @@ packages:
     description:
       path: "."
       ref: dev
-      resolved-ref: "13c63d29356b17a9acefb57c87d50519f2a023e9"
+      resolved-ref: "5b66ebbbc199da15dc1178e30395a5e38371f8e7"
       url: "https://github.com/TheLastGimbus/rollapi_dart/"
     source: git
     version: "1.2.1"

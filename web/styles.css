@@ -116,6 +116,10 @@ form div {
   width: 500px;
   max-width: 100%;
 }
+#roll-notes {
+  font-size: 90%;
+  opacity: 0.5;
+}
 #btn-roll {
   font-size: 150%;
   position: absolute;
