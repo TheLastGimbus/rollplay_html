@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'settings.dart';
+import '../settings.dart';
 
 
 void main() async {
