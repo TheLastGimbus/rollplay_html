@@ -16,6 +16,16 @@ extension Cookie on String {
     }
   }
 
-  void setCookie(String key, String value) =>
-      document.cookie = '$key=$value; SameSite=Lax;';
+  void setCookie(
+    String key,
+    String value, {
+    Duration maxAge = const Duration(days: 365),
+    bool secure = true,
+    String path = '/',
+  }) =>
+      document.cookie = '$key=$value; '
+              'Max-Age=${maxAge.inSeconds}; '
+              'Path=$path; ' +
+          (secure ? 'Secure; ' : '') +
+          'SameSite=Lax; ';
 }
