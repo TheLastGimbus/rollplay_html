@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:rollapi/rollapi.dart';
 
+import 'settings.dart';
+
 void hide(Element e) => e.classes.add('hidden');
 
 void show(Element e) => e.classes.remove('hidden');
@@ -13,7 +15,10 @@ void main() {
   final resultImg = querySelector('#result-image')! as ImageElement;
   final btnRoll = querySelector('#btn-roll')! as ButtonElement;
 
-  final client = RollApiClient(minPingFrequency: Duration(milliseconds: 1000));
+  final client = RollApiClient(
+    minPingFrequency: Duration(milliseconds: 1000),
+    password: document.cookie?.getCookie(cookieApiPwdKey),
+  );
 
   show(btnRoll);
   btnRoll.onClick.listen((_) async {
