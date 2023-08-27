@@ -40,6 +40,12 @@ void main() {
         resultText.innerText = event.number.toString();
         resultImg.src = client.getImageUrl(uuid).toString();
         resultImg.show();
+        resultImg.onClick.listen((event) {
+          window.navigator.share({
+            'title': 'Link to your roll',
+            'url': window.location.href.toString()
+          });
+        });
 
         rollNotes.innerText = "Psst, your roll will expire "
             "${event.ttl != null ? event.ttl!.toTimeString() : "after some time"}";
