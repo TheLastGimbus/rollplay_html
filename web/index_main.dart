@@ -9,7 +9,7 @@ import 'dart:async';
 StreamSubscription<RollState>? _watchSub;
 
 void main() {
-  final mainText = querySelector('#main-text')!;
+  // final mainText = querySelector('#main-text')!;
   final resultText = querySelector('#result-text')!;
   final resultImg = querySelector('#result-image')! as ImageElement;
   final rollNotes = querySelector('#roll-notes')!;
@@ -41,8 +41,8 @@ void main() {
         resultImg.src = client.getImageUrl(uuid).toString();
         resultImg.show();
 
-        rollNotes.innerText = "Psst, your roll will expire " +
-            (event.ttl != null ? event.ttl!.toTimeString() : "after some time");
+        rollNotes.innerText = "Psst, your roll will expire "
+            "${event.ttl != null ? event.ttl!.toTimeString() : "after some time"}";
         rollNotes.show();
       }
 
@@ -73,12 +73,11 @@ void main() {
       );
       await watch(uuid);
     } on RollApiRateLimitException catch (e) {
-      var txt = "You're rolling too often! " +
-          (e.limitReset != null
-              // Looks like getting headers doesn't work in browser
-              ? "Wait ~${e.limitReset!.difference(DateTime.now()).inSeconds} "
-                  "seconds ⏳ and try again 🤷"
-              : "Try again later...");
+      // Looks like getting headers doesn't work in browser
+      var txt = "You're rolling too often! "
+          "${e.limitReset != null ? "Wait "
+              "~${e.limitReset!.difference(DateTime.now()).inSeconds} "
+              "seconds ⏳ and try again 🤷" : "Try again later..."}";
       resultText.text = txt;
     } catch (e) {
       resultText.text = "Error: $e";

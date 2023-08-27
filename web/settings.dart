@@ -8,10 +8,10 @@ extension Cookie on String {
     final cookies = document.cookie!.split('; ');
     try {
       return cookies
-          .firstWhere((cookie) => cookie.startsWith(key + '='))
+          .firstWhere((cookie) => cookie.startsWith('$key='))
           .split('=')
           .last;
-    } on StateError catch (e) {
+    } on StateError catch (_) {
       return null;
     }
   }
@@ -24,8 +24,8 @@ extension Cookie on String {
     String path = '/',
   }) =>
       document.cookie = '$key=$value; '
-              'Max-Age=${maxAge.inSeconds}; '
-              'Path=$path; ' +
-          (secure ? 'Secure; ' : '') +
+          'Max-Age=${maxAge.inSeconds}; '
+          'Path=$path; '
+          '${secure ? 'Secure; ' : ''}'
           'SameSite=Lax; ';
 }

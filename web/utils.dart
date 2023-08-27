@@ -26,6 +26,7 @@ extension UriUtils on Uri {
 
 extension DateTimeUtils on DateTime {
   String toTimeString({bool seconds = false}) =>
-      '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}' +
-      (seconds ? ':${second.toString().padLeft(2, '0')}' : '');
+      '${hour.toString().padLeft(2, '0')}:'
+      '${minute.toString().padLeft(2, '0')}'
+      '${seconds ? ':${second.toString().padLeft(2, '0')}' : ''}';
 }
