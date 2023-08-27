@@ -42,8 +42,7 @@ void main() {
         resultImg.src = client.getImageUrl(uuid).toString();
         resultImg.show();
         btnCopy.show();
-        rollNotes.innerText = "Psst, your roll will expire "
-            "${event.ttl != null ? event.ttl!.toTimeString() : "after some time"}";
+        rollNotes.innerText = timeUntilExpiryText(event.ttl);
         rollNotes.show();
       }
 

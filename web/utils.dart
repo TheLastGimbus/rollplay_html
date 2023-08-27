@@ -1,5 +1,7 @@
 import 'dart:html';
 
+import 'package:intl/intl.dart';
+
 extension ElementUtils on Element {
   void hide() => classes.add('hidden');
 
@@ -25,8 +27,12 @@ extension UriUtils on Uri {
 }
 
 extension DateTimeUtils on DateTime {
-  String toTimeString({bool seconds = false}) =>
-      '${hour.toString().padLeft(2, '0')}:'
-      '${minute.toString().padLeft(2, '0')}'
-      '${seconds ? ':${second.toString().padLeft(2, '0')}' : ''}';
+  String toTimeString() =>
+      (day == DateTime.now().day
+          ? 'today, '
+          : DateFormat('EEEE, ').format(this)) +
+      DateFormat("H:m").format(this);
 }
+
+String timeUntilExpiryText(DateTime? ttl) => "Psst, your roll will be visible "
+    "${ttl != null ? "until ${ttl.toTimeString()}" : "only for some time"}";
