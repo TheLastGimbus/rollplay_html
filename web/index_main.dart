@@ -12,6 +12,7 @@ void main() {
   // final mainText = querySelector('#main-text')!;
   final resultText = querySelector('#result-text')!;
   final resultImg = querySelector('#result-image')! as ImageElement;
+  final btnCopy = querySelector('#btn-copy-link')! as ButtonElement;
   final rollNotes = querySelector('#roll-notes')!;
   final btnRoll = querySelector('#btn-roll')! as ButtonElement;
 
@@ -40,13 +41,7 @@ void main() {
         resultText.innerText = event.number.toString();
         resultImg.src = client.getImageUrl(uuid).toString();
         resultImg.show();
-        resultImg.onClick.listen((event) {
-          window.navigator.share({
-            'title': 'Link to your roll',
-            'url': window.location.href.toString()
-          });
-        });
-
+        btnCopy.show();
         rollNotes.innerText = "Psst, your roll will expire "
             "${event.ttl != null ? event.ttl!.toTimeString() : "after some time"}";
         rollNotes.show();
@@ -62,11 +57,13 @@ void main() {
     await _watchSub!.asFuture();
   }
 
+  btnCopy.onClick.listen((_) =>
+      window.navigator.clipboard?.writeText(window.location.href.toString()));
   btnRoll.show();
   btnRoll.onClick.listen((_) async {
     resultImg.hide();
+    btnCopy.hide();
     btnRoll.disabled = true;
-
     resultText.text = "Rolling...";
     resultText.show();
     try {

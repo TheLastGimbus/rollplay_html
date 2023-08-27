@@ -54,9 +54,6 @@ button.ripple {
   padding: 18px;
   font-size: 16px;
   cursor: pointer;
-  color: white;
-  background: linear-gradient(45deg, #7a4da2, #575faa);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   outline: none;
 }
 
@@ -128,6 +125,10 @@ form div {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+
+  color: white;
+  background: linear-gradient(45deg, #7a4da2, #575faa);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 #btn-roll:focus {
   border: #fff solid 1px;
