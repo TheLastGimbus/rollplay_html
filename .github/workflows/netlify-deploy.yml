@@ -15,10 +15,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: dart-lang/setup-dart@v1
       with:
-        sdk: "2.16.1"
+        sdk: "3.1.0"
     - run: dart pub global activate webdev
     - run: dart pub get
     - run: webdev build -o output/
@@ -26,7 +26,7 @@ jobs:
     # Change folder name for it to route correclty
     - run: mkdir build && mv output/web/ build/rollplay/
     - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v1.2.3
+      uses: nwtgck/actions-netlify@v2.1.0
       with:
         # Deploy it like "site.com/unifuck", not just "site.com"
         publish-dir: './build'
