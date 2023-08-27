@@ -2,6 +2,7 @@ name: rollplay_html
 description: Front-end web-app that makes use of Roll-API
 version: 0.0.1
 homepage: https://the.lastgimbus.com/rollplay
+publish_to: 'none'
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
