@@ -79,8 +79,10 @@ void main() {
               "~${e.limitReset!.difference(DateTime.now()).inSeconds} "
               "seconds ⏳ and try again 🤷" : "Try again later..."}";
       resultText.text = txt;
+      // don't enable the btn - mf doesn't deserve it
     } catch (e) {
       resultText.text = "Error: $e";
+      btnRoll.disabled = false;
     }
   });
 
