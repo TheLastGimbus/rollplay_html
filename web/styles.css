@@ -55,6 +55,7 @@ button.ripple {
   font-size: 16px;
   cursor: pointer;
   outline: none;
+  box-shadow: 0 0 8px #888;
 }
 
 button.ripple:disabled {
@@ -115,7 +116,7 @@ form div {
 }
 #btn-copy-link {
   padding: 8px;
-  background-color: #c0c0c0;
+  background-color: #eee;
 }
 #roll-notes {
   font-size: 90%;
@@ -124,7 +125,7 @@ form div {
 #btn-roll {
   font-size: 150%;
   position: absolute;
-  padding: 12px;
+  padding: 14px;
   /*  center bottom */
   bottom: 48px;
   left: 50%;
@@ -133,7 +134,6 @@ form div {
 
   color: white;
   background: linear-gradient(45deg, #7a4da2, #575faa);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 #btn-roll:focus {
   border: #fff solid 1px;
