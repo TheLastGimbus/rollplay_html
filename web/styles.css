@@ -106,12 +106,16 @@ form div {
   font-size: 120%;
 }
 #result-text {
-  font-size: 180%;
-  margin-top: 16px;
+  font-size: 300%;
+  margin: 6px;
 }
 #result-image {
   width: 500px;
   max-width: 100%;
+}
+#btn-copy-link {
+  padding: 8px;
+  background-color: #c0c0c0;
 }
 #roll-notes {
   font-size: 90%;
@@ -120,6 +124,7 @@ form div {
 #btn-roll {
   font-size: 150%;
   position: absolute;
+  padding: 12px;
   /*  center bottom */
   bottom: 48px;
   left: 50%;

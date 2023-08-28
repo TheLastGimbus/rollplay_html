@@ -30,9 +30,9 @@ void main() {
       print('Watch event: $event');
       if (event is RollStateWaiting) {
         resultText.innerText = event.eta != null
-            ? 'Waiting... your roll should be here in '
-                '~${event.eta!.difference(DateTime.now()).inSeconds} seconds...'
-            : 'Waiting for the roll...';
+            ? 'Waiting... '
+                '~${event.eta!.difference(DateTime.now()).inSeconds}s left'
+            : 'Waiting...';
       } else if (event is RollStateErrorExpired) {
         resultText.innerText = 'This roll has expired 😞 \nTry a new one!';
       } else if (event is RollStateErrorFailed) {
@@ -61,6 +61,7 @@ void main() {
   btnRoll.show();
   btnRoll.onClick.listen((_) async {
     resultImg.hide();
+    rollNotes.hide();
     btnCopy.hide();
     btnRoll.disabled = true;
     resultText.text = "Rolling...";
