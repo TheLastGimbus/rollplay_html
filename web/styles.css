@@ -58,7 +58,7 @@ button.ripple {
 }
 
 button.ripple:disabled {
-  background: #888;
+  background: #888 !important ;
   cursor: default;
 }
 
